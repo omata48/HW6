@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-12 jumbotron  h1 mb-0">
+            <header class="text-center display-4">Weather Dashboard</header>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row" style="height: 25rem;">
+            <div class="col-sm-4 panel panel-default " style="background-color: #eee;">
+                <div class="panel-body">
+                    <form>
+                        <label class="h5" for="citySearch">Search for a city</label>
+                        <div class="input-group mb-3" style="width: 80%;">
+                            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button" id="citySearch">Button</button>
+                            </div>
+                        </div>
+                        <div class="card" style="width: 95%;">
+                            <ul class="list-group list-group-flush" id="searchHistory">
+                            </ul>
+                          </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="card mx-auto my-1" style="width: 98%;">
+                        <div class="card-body">
+                            <p>City name</p><span id="currentWeatherIcon"></span>
+                            <p>Temperature:</p><span id="temperature"></span>
+                            <p>Humidity:</p><span id="humidity"></span>
+                            <p>Wind Speed:</p><span id="windSpeed"></span>
+                            <p>UV Index:</p><span id="uvIndex"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <section class="container">
+                        <p>5 day section</p>
+                        <div class="card-deck">
+                            <div class="card h-100"></div>
+                            <div class="card h-100"></div>
+                            <div class="card h-100"></div>
+                            <div class="card h-100"></div>
+                            <div class="card h-100"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
