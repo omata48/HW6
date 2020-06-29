@@ -20,42 +20,67 @@
         <div class="row" style="height: 25rem;">
             <div class="col-sm-4 panel panel-default " style="background-color: #eee;">
                 <div class="panel-body">
-                    <form>
+                    <div class="container searchContainer mb-2">
                         <label class="h5" for="citySearch">Search for a city</label>
                         <div class="input-group mb-3" style="width: 80%;">
-                            <input type="text" class="form-control" aria-label="City Searching" aria-describedby="button-addon2">
+                            <input type="text" class="form-control" aria-label="City Searching" id="citySearch">
                             <div class="input-group-append">
-                              <button class="btn btn-outline-secondary" type="button" id="citySearch">Button</button>
+                              <button class="btn btn-outline-secondary" type="button" id="submitSearch">Search</button>
                             </div>
                         </div>
                         <div class="card" style="width: 95%;">
                             <ul class="list-group list-group-flush" id="searchHistory">
                             </ul>
                           </div>
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-8">
                 <div class="row">
                     <div class="card mx-auto my-1" style="width: 98%;">
                         <div class="card-body">
-                            <p>City name</p><span id="currentWeatherIcon"></span>
-                            <p>Temperature:</p><span id="temperature"></span>
-                            <p>Humidity:</p><span id="humidity"></span>
-                            <p>Wind Speed:</p><span id="windSpeed"></span>
-                            <p>UV Index:</p><span id="uvIndex"></span>
+                            <p class="h4" id="cityNameDay">City name</p>
+                            <p>Temperature: <span id="temperature"></span></p>
+                            <p>Humidity: <span id="humidity"></span></p>
+                            <p>Wind Speed: <span id="windSpeed"></span></p>
+                            <p>UV Index: <span id="uvIndex"></span></p>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <section class="container">
-                        <p>5 day section</p>
+                        <p class="h2">5 Day Forecast:</p>
                         <div class="card-deck">
-                            <div class="card h-100"></div>
-                            <div class="card h-100"></div>
-                            <div class="card h-100"></div>
-                            <div class="card h-100"></div>
-                            <div class="card h-100"></div>
+                            <div class="forecast card h-100 text-center pt-2">
+                                <p class="date-1 h6"></p>
+                                <img class="icon-1 float-center">
+                                <p class="temp-1"></p>
+                                <p class="humidity-1"></p>
+                            </div>
+                            <div class="forecast card h-100 text-center pt-2">
+                                <p class="date-2 h6"></p>
+                                <img class="icon-2">
+                                <p class="temp-2"></p>
+                                <p class="humidity-2"></p>
+                            </div>
+                            <div class="forecast card h-100 text-center pt-2">
+                                <p class="date-3 h6"></p>
+                                <img class="icon-3">
+                                <p class="temp-3"></p>
+                                <p class="humidity-3"></p>
+                            </div>
+                            <div class="forecast card h-100 text-center pt-2">
+                                <p class="date-4 h6"></p>
+                                <img class="icon-4">
+                                <p class="temp-4"></p>
+                                <p class="humidity-4"></p>
+                            </div>
+                            <div class="forecast card h-100 text-center pt-2">
+                                <p class="date-5 h6"></p>
+                                <img class="icon-5">
+                                <p class="temp-5"></p>
+                                <p class="humidity-5"></p>
+                            </div>
                         </div>
                     </section>
                 </div>
