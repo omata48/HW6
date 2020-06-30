@@ -21,7 +21,8 @@ header{
 }
 
 @media (min-width: 576px) { 
-    .searchContainer{
+    .searchContainer,
+    .main{
         margin-bottom: 5rem;
     }
 }
