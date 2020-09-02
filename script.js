@@ -43,7 +43,7 @@ function getWeatherData(){
     var searchHistory = $("#searchHistory");
     if (event === undefined){
         //init (last search from local storage)
-        console.log("running undefined");
+        // console.log("running undefined");
         var cityName = localStorage.getItem("city");
         if (cityName === undefined){
             return
@@ -82,7 +82,7 @@ function getWeatherData(){
         var latCity = "" + response.coord.lat;
         var lonCity = "" + response.coord.lon;
         var cityName = response.name;
-        console.log(todayAPI);
+        // console.log(todayAPI);
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -107,7 +107,7 @@ function getWeatherData(){
         })
         
         .then(function (response) {
-            console.log(fiveDayAPI);
+            // console.log(fiveDayAPI);
 
             var currentWeather = response.current;
             // console.log(currentWeather);
@@ -117,7 +117,7 @@ function getWeatherData(){
             var weatherDescription = currentWeather.weather[0].icon;
             // console.log(weatherDescription);
             // console.log(iconList[weatherDescription]);
-            var iconURL = "http://openweathermap.org/img/wn/" + weatherDescription + ".png";
+            var iconURL = "https://openweathermap.org/img/wn/" + weatherDescription + ".png";
             var currentConditions = "<img src='"+iconURL+"'>"
             $("#cityNameDay").html((cityName)+ " ("+today+") "+currentConditions);
             var currentTemp = currentWeather.temp;
@@ -160,7 +160,7 @@ function getWeatherData(){
                 $(".date-"+i).text(date);
                 // console.log(newCalDay);
                 var currentIcon = currentDay.weather[0].icon;
-                var iconURL = "http://openweathermap.org/img/wn/" + currentIcon + ".png";
+                var iconURL = "https://openweathermap.org/img/wn/" + currentIcon + ".png";
                 $(".icon-"+i).attr("src",iconURL);
                 // temperature
                 var currentTemp = currentDay.temp.day;

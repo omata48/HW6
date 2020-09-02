@@ -13,11 +13,16 @@ header{
 
 .forecast{
     color: white;
-    background-color: blue;
+    background-color: darkgrey;
+    ;
 }
 
 #uvIndex{
     padding: 8px;
+}
+
+.weather5day{
+    align-self: center;
 }
 
 @media (min-width: 576px) { 
@@ -26,3 +31,5 @@ header{
         margin-bottom: 5rem;
     }
 }
+
+
