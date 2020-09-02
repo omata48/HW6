@@ -1,20 +1,45 @@
 # Weather Dashboard
+![license-badge](https://img.shields.io/badge/license-MIT-green)
 
-**[Project Link](https://omata48.github.io/HW6/)**
+**[Link to Deployed Site](https://omata48.github.io/Weather-Dashboard/)**
 
-This project consisted of creating a web application that would allow a traveler who wants to see the weather outlook for multiple cities. The user is able to access this information for one city at a time in order to create travel plans. Additioanlly, they can always access previously searched for information by selecting a city from the "Search History".  
+## Description
 
-![](images/fullScreen.png)
-![](images/halfScreen.png) 
+Web application to view current and five day forecast for any city in the United States. Querying for a city keeps a history of previously searched cities. By selecting a city from the search history, users are able to quickly search for the city selected.
 
-## Layout
+![](images/fullScreen.png)  
 
-The webpage was created with a simple layout: the title of the webpage, an aside, and the main content block. This was chosen in order to develop a clean display for the user to only focus on the weather data. The search aside contains the main user interaction. On this element, the user enters any city they want to search for, clicks on the "Search Button" and then is given the weather data pertaining to the city. Additionally, the aside element contains a temporary search history where the user can select a previously searched city to get the weather data from that city again.  
+![](images/mobileNarrow1.png)
 
-The layout was also created using [Bootstrap](https://getbootstrap.com/) in order to be able to generate a more mobile responsive application. When displaying the application on a vertical screen, the webpage aligns the elements vertically. This gives the user the title first, then the search field and then the main weather data followed by the cards containing the 5 day forecast.
+## Table of Contents
+
+[Function](#Function)
+[Usage](#Usage)  
+[License](#License)  
+[Contributing](#Contributing)  
+[Questions](#Questions)  
 
 ## Function
 
-The web page works by obtaining weather data for the city the user inputs from the [Open Weather API](https://openweathermap.org/api). To work with this API, I needed to craft query URL's based on the user's input that then retreived the latitude and longitude of the city the user wants the weather data for. With this additional information, we then create a second ajax query to the API that returns weather data for the current and next 8 days. We then parse this JSON data to retreive the information that is going to replace the contents of the HTML containers that we locate with jQuery. The weather icon is a changing image source that is determined by the icon ID given back from the API. The UV index is styled depending on the value given and the severity of the value. 
+Makes AJAX queries to the [Open Weather API](https://openweathermap.org/api) to retrieve weather data. Uses two calls in order to get the latitude and longitude of the city and then to get the forecast for the city chosen. Additionally, the API also passes the images used to show the weather as an icon.
 
-Additionally, I utilized the local storage of the users application in order to store the name of the last searched city. If the browser is then refreshed, the init() function searches for an item stored with the key "city". If there is one, it renders the weather history for that item; if there isn't an item, the page waits for input from the user.
+Additionally, utilizes local storage to keep track of the search history. This is stored in the user's browser and is pulled from on refresh. If there is no items in the local storage, a default city is filled.
+
+## Usage
+
+While developing, you can open a preview of the webpage from your editor to your local browser (preferred Chrome to work with the developer tools).
+
+You can also visit this link to visit the deployed version: [Site App](https://omata48.github.io/Weather-Dashboard/)
+
+## License
+
+Licensed under the [MIT license](LICENSE).
+
+## Contributing
+
+For any improvements, feel free to fork the code and submit a pull request.
+
+## Questions
+
+View my other projects on my [GitHub Profile](https://github.com/omata48)  
+For additional questions feel free to email me at omata48@outlook.com
