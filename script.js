@@ -43,11 +43,7 @@ function getWeatherData(){
     var searchHistory = $("#searchHistory");
     if (event === undefined){
         //init (last search from local storage)
-<<<<<<< HEAD
-        // console.log("running undefined");
-=======
         //console.log("running undefined");
->>>>>>> a92b85273e40e7a40b7ed4795616c4dbdb195743
         var cityName = localStorage.getItem("city");
         if (cityName === undefined){
             return
@@ -71,7 +67,7 @@ function getWeatherData(){
     }
 
     // var cityName = "austin"; //testing input
-    
+
 
     var apiKey = "98e46e361787699b6e62a63c5142d5a0"
     var todayAPI = "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid="+apiKey;
@@ -86,18 +82,14 @@ function getWeatherData(){
         var latCity = "" + response.coord.lat;
         var lonCity = "" + response.coord.lon;
         var cityName = response.name;
-<<<<<<< HEAD
-        // console.log(todayAPI);
-=======
         //console.log(todayAPI);
->>>>>>> a92b85273e40e7a40b7ed4795616c4dbdb195743
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
 
         today = mm + '/' + dd + '/' + yyyy;
-        
+
         if ((!fromSearchHistory)&&(!fromInit)){
             var newSearch = $("<li>");
             newSearch.addClass("list-group-item");
@@ -113,18 +105,14 @@ function getWeatherData(){
             url: fiveDayAPI,
             method: "GET"
         })
-        
+
         .then(function (response) {
-<<<<<<< HEAD
-            // console.log(fiveDayAPI);
-=======
             //console.log(fiveDayAPI);
->>>>>>> a92b85273e40e7a40b7ed4795616c4dbdb195743
 
             var currentWeather = response.current;
             // console.log(currentWeather);
             // console.log(dailyWeatherArray);
-            
+
             // current weather calculation
             var weatherDescription = currentWeather.weather[0].icon;
             // console.log(weatherDescription);
