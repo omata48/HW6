@@ -31,43 +31,48 @@ function init(){
 // main function
 function getWeatherData(){
 
-    if (event !== undefined){
-        event.preventDefault();
-    }
-    // console.log(this);
-    // console.log(this.id);
-    // console.log((event.target).nodeName);
     var fromSearchHistory = false
     var fromInit = false
     var inputField;
-    var searchHistory = $("#searchHistory");
+    var searchHistoryEl = $("#searchHistory");
+    var searchHistory = [];
+
+    // start of app 
+    // special checks for initialization of app 
+    // (setting up local storage)
+    var cityHistory = localStorage.getItem("history");
+    if (cityHistory !== null){
+        searchHistory = JSON.parse(cityHistory);
+        if (searchHistoryEl.children().length === 0){
+            for(var i=0; i<searchHistory.length; i++){
+                newHistory(searchHistory[i],searchHistoryEl);
+            }
+        }
+    } else {
+        console.log("no history found")
+    }
     if (event === undefined){
-        //init (last search from local storage)
-        //console.log("running undefined");
         var cityName = localStorage.getItem("city");
-        if (cityName === undefined){
-            return
+        if (cityName === null){
+            // default city based on my location
+            cityName = "Austin"
         }
         fromInit = true;
     }
+    // search for city from history list
     else if ((event.target).nodeName === "LI"){
-        //search for city from history
-        // var cityName === li element selected name
         fromSearchHistory = true
-        var liTarget = event.target;
-        var cityName = liTarget.textContent;
+        var cityName = event.target.textContent;
     }
+    // search by typing in field
     else if ((event.target).nodeName === "BUTTON") {
         inputField = $("#citySearch")
+        // input validation
         if (inputField[0].value === ""){
-            // console.log("no input");
             return
         }
         var cityName = inputField[0].value;
     }
-
-    // var cityName = "austin"; //testing input
-
 
     var apiKey = "98e46e361787699b6e62a63c5142d5a0"
     var todayAPI = "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid="+apiKey;
@@ -82,7 +87,6 @@ function getWeatherData(){
         var latCity = "" + response.coord.lat;
         var lonCity = "" + response.coord.lon;
         var cityName = response.name;
-        //console.log(todayAPI);
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -90,12 +94,13 @@ function getWeatherData(){
 
         today = mm + '/' + dd + '/' + yyyy;
 
-        if ((!fromSearchHistory)&&(!fromInit)){
-            var newSearch = $("<li>");
-            newSearch.addClass("list-group-item");
-            newSearch.text(cityName);
-            searchHistory.append(newSearch);
-
+        // add to search history
+        if ((!fromSearchHistory)&&(!fromInit)&&(!searchHistory.includes(cityName))){
+            newHistory(cityName,searchHistoryEl);
+            console.log(searchHistory);
+            searchHistory.push(cityName);
+            console.log(searchHistory);
+            localStorage.setItem("history",JSON.stringify(searchHistory));
         }
         localStorage.setItem("city",cityName);
 
@@ -107,16 +112,10 @@ function getWeatherData(){
         })
 
         .then(function (response) {
-            //console.log(fiveDayAPI);
-
             var currentWeather = response.current;
-            // console.log(currentWeather);
-            // console.log(dailyWeatherArray);
 
             // current weather calculation
             var weatherDescription = currentWeather.weather[0].icon;
-            // console.log(weatherDescription);
-            // console.log(iconList[weatherDescription]);
             var iconURL = "https://openweathermap.org/img/wn/" + weatherDescription + ".png";
             var currentConditions = "<img src='"+iconURL+"'>"
             $("#cityNameDay").html((cityName)+ " ("+today+") "+currentConditions);
@@ -140,14 +139,6 @@ function getWeatherData(){
             else{
                 $("#uvIndex").css("background-color","red");
             }
-
-            //if uv index favorable , moderate , sever (change bg color)
-
-            // console.log(currentConditions)
-            // console.log(currentTemp)
-            // console.log(currentHumidity)
-            // console.log(currentWind)
-            // console.log(currentUV)
 
             // 5 day calculation
             var dailyWeatherArray = response.daily; //skip index 0 -- current day
@@ -174,6 +165,24 @@ function getWeatherData(){
     })
 }
 
+function eraseWeatherData(){
+    // erase list from localstorage
+    localStorage.removeItem("history");
+    $("#searchHistory").empty();
+    getWeatherData();
+}
+
+function newHistory(name,historyList){
+    var search = $("<li>");
+    search.addClass("list-group-item");
+    search.text(name);
+    historyList.append(search);
+}
+
 init();
+// search button
 $("#submitSearch").on("click",getWeatherData);
+// search history button
 $("#searchHistory").on("click",getWeatherData);
+// remove search history button
+$("#eraseHistory").on("click",eraseWeatherData);
